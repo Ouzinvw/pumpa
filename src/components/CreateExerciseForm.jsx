@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const difficultyLevels = ["beginner", "easy", "medium", "hard", "godly"];
 
@@ -95,6 +95,7 @@ const exerciseFormSchema = z.object({
 
 export default function CreateExerciseForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm({
     resolver: zodResolver(exerciseFormSchema),
@@ -167,7 +168,6 @@ export default function CreateExerciseForm() {
           Take from Clipboard
         </Button>
 
-        {/* Form fields (unchanged) */}
         <FormField
           control={form.control}
           name="name"
